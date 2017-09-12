@@ -2,30 +2,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container-fluid" id="homepage">
-            
-    <div class="row" id="homepage-row" align="center">
-        
-        <form action="/render_map" id="homepage-form" class="dropdown">
-
-            <label for="location"><h1 id="title">tell me about the birds</h1></label><br>
-                <select id="location" class="select" name="location">
-                    <option value="county" placeholder="county" disabled selected>County</option>
-                    {% for county in counties %}
-                    <option value="{{ county }}" placeholder="county">{{ county }}</option>
-                    {% endfor %}
-                </select>
-
-                <select id="bird-species" class="select" name="bird-species">
-                    <option value="bird-species" placeholder="Species" width="75px" disabled>Species</option>
-                </select>
-
-            <input type="image" name="submit" src="./static/images/arrow_submit-01.png" border="0" class="submit" id="submission_info">
-
-        </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="map-container col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div id="map">
+            <h1>Hello</h1>
+              <div class="loading" style="display:none;">
+                <div class="circle"></div>
+              </div>
+            </div>
+        </div>
     </div>
-</div>
-<footer align="right">Data: <a href="http://ebird.org/content/ebird/">eBird</a>, Photo: Ken Burton</footer>
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="./static/get_species.js"></script>
+  </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 {% endblock %}

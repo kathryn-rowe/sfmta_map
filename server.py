@@ -6,28 +6,15 @@ from flask import (Flask,
                    jsonify,
                    g)
 
-from flask_debugtoolbar import DebugToolbarExtension
-
-from model import (Species,
-                   SamplingEvent,
-                   Observation,
-                   MonthlyAvg,
-                   connect_to_db,
-                   db)
-
 import secret_key
 
-from geojson import (Feature,
-                     Point,
-                     FeatureCollection)
-
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 
 JS_TESTING_MODE = False
 
 app.secret_key = secret_key.flask_secret_key
-mapbox_api_key = secret_key.mapbox_api_key
 
 
 @app.route('/')
@@ -43,7 +30,7 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = True
 
-    connect_to_db(app)
+    # connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

@@ -2,25 +2,67 @@
 <html>
 <meta charset="utf-8">
 <head>
-    <title>SFMTA Map</title>
-    <!-- Style -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Roboto:300" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./static/styles.css">
-    <!-- Javascript Imports -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
-    <!-- Other -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content=''>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <title>SFMTA Board Resolutions</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500|Montserrat">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+  <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/v3.1.0/mapbox.css">
+  <link rel="stylesheet" href="//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css"/>
+  <link rel="stylesheet" href="//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.css" />
+  <link rel="stylesheet" href="./static/css/style-resolutions.css">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
+  </script>
+  <![endif]-->
 </head>
 
 <body>
 
     {% block content %} put your content here {% endblock %}
     
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Load jQuery from Google's CDN, so that it is likely to be already in the client's cache -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- Load pre-made scripts from vendors -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.1/URI.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.1/jquery.URI.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//api.tiles.mapbox.com/mapbox.js/v3.1.0/mapbox.js"></script>
+<script src="//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.js"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.colVis.min.js"></script>
+<script src="//cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+
+<!-- <script src="js/vendor/google-analytics.js"></script> -->
+<!-- <script src="js/vendor/moment.js"></script>
+<script src="js/vendor/daterangepicker.js"></script>
+<script src="js/vendor/jquery.nouislider.all.min.js"></script>
+<script src="js/vendor/bootstrap3-typeahead.js"></script>
+<script src="js/vendor/leaflet.sleep.js"></script> -->
+
+<!-- Load services -->
+<!-- <script src="js/services/endpoints.js"></script>
+<script src="js/services/tokens.js"></script>
+<script src="js/services/addressService.js"></script>
+<script src="js/services/incidentService.js"></script>
+ -->
 </body>
 </html>

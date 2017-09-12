@@ -11,6 +11,7 @@
 
 
   <title>SFMTA Board Resolutions</title>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500|Montserrat">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
@@ -21,6 +22,8 @@
   <link rel="stylesheet" href="//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.css" />
   <link rel="stylesheet" href="./static/css/style-resolutions.css">
+  <!-- Load jQuery from Google's CDN, so that it is likely to be already in the client's cache -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -32,14 +35,10 @@
 <body>
 
     {% block content %} put your content here {% endblock %}
-    
 
-<!-- Load jQuery from Google's CDN, so that it is likely to be already in the client's cache -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <!-- Load pre-made scripts from vendors -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.1/URI.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.1/jquery.URI.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="//api.tiles.mapbox.com/mapbox.js/v3.1.0/mapbox.js"></script>
 <script src="//api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js"></script>
@@ -63,5 +62,11 @@
 <script src="../static/js/services/addressService.js"></script>
 <script src="../static/js/services/incidentService.js"></script>
 
+<!-- Load modules -->
+<script src="../static/js/modules/viewModel.js"></script>
+<script src="../static/js/modules/map.js"></script>
+
+<!-- Start the application -->
+<script src="../static/js/start.js"></script>
 </body>
 </html>

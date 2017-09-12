@@ -2,6 +2,7 @@
 
 from flask import (Flask,
                    render_template,
+                   redirect,
                    request, session,
                    jsonify,
                    g)
@@ -23,7 +24,14 @@ def index():
 
     return render_template("homepage.html")
 
+@app.route('/save_geometery.json')
+def save_geometery():
+    """Save geometery to database"""
+    geometery = request.args.get("convertedData")
 
+    print "***************" + geometery + "***************"
+
+    return redirect("/")
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the

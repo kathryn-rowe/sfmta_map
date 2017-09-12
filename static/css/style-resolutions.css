@@ -1,6 +1,8 @@
 body {
   font-family: "Libre Franklin";
   font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -117,6 +119,24 @@ a {
   -webkit-animation: spin 1s infinite linear;
   margin: auto auto;
   top: 200px;
+}
+
+#delete, #export {
+    position: absolute;
+    top:50px;
+    right:10px;
+    z-index:100;
+    background:white;
+    color:black;
+    padding:6px;
+    border-radius:4px;
+    font-family: 'Helvetica Neue';
+    cursor: pointer;
+    font-size:12px;
+    text-decoration:none;
+}
+#export {
+    top:90px;
 }
 
 @-webkit-keyframes spin { 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Demo</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+    <!--Add mapbox.js -->
+    <script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/D2FC8724-5B6D-8341-B792-49E887BEB1DB/main.js" charset="UTF-8"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+    <!--Add draw plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.10/leaflet.draw.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #delete, #export {
+            position: absolute;
+            top:50px;
+            right:10px;
+            z-index:100;
+            background:white;
+            color:black;
+            padding:6px;
+            border-radius:4px;
+            font-family: 'Helvetica Neue';
+            cursor: pointer;
+            font-size:12px;
+            text-decoration:none;
+        }
+        #export {
+            top:90px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='map'></div>
+    <div id='delete'>Delete Features</div>
+    <a href='#' id='export'>Export Features</a>
+
+    <script>
+        var featureGroup = L.featureGroup();
+
+        var SHAPE_STYLE_SETTINGS = {
+            color: '#0033ff',
+            fillColor: '#0033ff',
+            weight: 5,
+            fillOpacity: 0.2,
+            opacity: 0.5
+        };
+
+        var DRAW_CONTROL_SETTINGS = {
+            draw: {
+                polyline: false,
+                polygon: { shapeOptions: SHAPE_STYLE_SETTINGS },
+                rectangle: { shapeOptions: SHAPE_STYLE_SETTINGS },
+                circle: { shapeOptions: SHAPE_STYLE_SETTINGS }
+            },
+            edit: {
+                featureGroup: featureGroup,
+            }
+        };
+
+        var map;
+        
+        map = L.mapbox.map('map').setView([37.7711,-482.4424], 14);
+        L.mapbox.tileLayer('bobbysud.i2pfp2lb', {detectRetina: true}).addTo(map);
+
+        featureGroup.addTo(map);
+
+        var drawControl = new L.Control.Draw({DRAW_CONTROL_SETTINGS}).addTo(map);
+
+
+        map.on('draw:created', function(e) {
+
+            // Each time a feaute is created, it's added to the over arching feature group
+            featureGroup.addLayer(e.layer);
+        });
+
+
+        // on click, clear all layers
+        document.getElementById('delete').onclick = function(e) {
+            featureGroup.clearLayers();
+        }
+
+        function saveConfirm(data) {
+            console.log("sent to server");
+        }
+
+        function saveGeometery(evt) {
+            evt.preventDefault();
+
+            var data = featureGroup.toGeoJSON();
+            var convertedData = JSON.stringify(data);
+            $.get('/save_geometery.json', 
+                   {"convertedData": convertedData}, 
+                   saveConfirm);
+        }
+
+        $('#export').on('click', saveGeometery);
+
+    </script>
+
+</body>
+
+</html>

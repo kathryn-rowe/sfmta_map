@@ -11,6 +11,10 @@ import secret_key
 
 from flask_debugtoolbar import DebugToolbarExtension
 
+# from geojson import (Feature,
+#                      Point,
+#                      FeatureCollection)
+
 app = Flask(__name__)
 
 JS_TESTING_MODE = False
@@ -27,11 +31,34 @@ def index():
 @app.route('/save_geometery.json')
 def save_geometery():
     """Save geometery to database"""
-    geometery = request.args.get("convertedData")
 
-    print "***************" + geometery + "***************"
+    shape = request.args.get("shape")
+    lat = request.args.get("lat")
+    long_ = request.args.get("long")
+
+    print "***************" + shape + "***************"
+    print "***************" + lat + "***************"
+    print "***************" + long_+ "***************"
 
     return redirect("/")
+
+def create_geojson(sampling_points):
+    """Create a geojson object for input list from in the choosen county"""
+
+    lat_long_features = []
+
+    if shape == 'Point':
+        point = Point([location['long'], location['lat']])
+        feature = Feature(geometry=point, properties={})
+    if shape == 'Polygon':
+        pass
+
+    lat_long_features.append(feature)
+
+    # Geojson FeatureCollection object
+    saved_geometery = FeatureCollection(lat_long_features)
+
+    return saved_geometery
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the

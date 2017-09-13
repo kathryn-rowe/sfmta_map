@@ -1,3 +1,4 @@
+var data;
 var mapModule = (function(window,$) {
 
     var MAPBOX_ACCESS_TOKEN = resourceTokensModule.MAPBOX_ACCESS_TOKEN;
@@ -54,9 +55,9 @@ var mapModule = (function(window,$) {
         });
     }
 
-    // $('delete').on('click') = function(e) {
-    //         featureGroup.clearLayers();
-    //     }
+    document.getElementById('delete').onclick = function(e) {
+        featureGroup.clearLayers();
+    }
 
     function saveConfirm(data) {
         console.log("sent to server");
@@ -65,11 +66,22 @@ var mapModule = (function(window,$) {
     function saveGeometery(evt) {
         evt.preventDefault();
 
-        var data = featureGroup.toGeoJSON();
-        var convertedData = JSON.stringify(data);
+        data = featureGroup.toGeoJSON();
+
+        var shape = data.features[0].geometry.type;
+        var lat = JSON.stringify(data.features[0].geometry.coordinates[0]);
+        var long = JSON.stringify(data.features[0].geometry.coordinates[1]);
+
+        var convertedData = {
+            "shape": shape,
+            "lat": lat,
+            "long": long
+        }
+
+
         $.get('/save_geometery.json', 
-               {"convertedData": convertedData}, 
-               saveConfirm);
+             convertedData, 
+             saveConfirm);
     }
 
     $('#export').on('click', saveGeometery);

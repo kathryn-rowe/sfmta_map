@@ -9,15 +9,16 @@ db = SQLAlchemy()
 ##############################################################################
 # Model definitions
 
-class Geomertery(db.Model):
+class Geometery(db.Model):
     """SFMTA Board Resolutions"""
 
-    __tablename__ = "Geometery"
+    __tablename__ = "geometery"
 
-    geometery_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    geometery_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    geometery_data = db.Column(db.String(500), nullable=False)
-
+    shape = db.Column(db.String(500), nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
 
@@ -35,7 +36,7 @@ def connect_to_db(app):
     # Configure to use our PstgreSQL database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///geometery_data'
 
-    app.config['SQLALCHEMY_ECHO'] = True
+    # app.config['SQLALCHEMY_ECHO'] = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)

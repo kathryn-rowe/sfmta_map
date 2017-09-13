@@ -55,12 +55,10 @@ var mapModule = (function(window,$) {
         });
     }
 
-    document.getElementById('delete').onclick = function(e) {
-        featureGroup.clearLayers();
-    }
-
     function saveConfirm(data) {
         console.log("sent to server");
+        $('#name').val("");
+        featureGroup.clearLayers();
     }
 
     function saveGeometery(evt) {
@@ -68,11 +66,13 @@ var mapModule = (function(window,$) {
 
         data = featureGroup.toGeoJSON();
 
+        var name = $('#name').val()
         var shape = data.features[0].geometry.type;
         var lat = JSON.stringify(data.features[0].geometry.coordinates[0]);
         var long = JSON.stringify(data.features[0].geometry.coordinates[1]);
 
         var convertedData = {
+            "name": name,
             "shape": shape,
             "lat": lat,
             "long": long
@@ -84,7 +84,7 @@ var mapModule = (function(window,$) {
              saveConfirm);
     }
 
-    $('#export').on('click', saveGeometery);
+    $('#export').on('submit', saveGeometery);
 
     function _convertFromFeetToMeters(feet) {
         return feet * METERS_PER_FOOT;

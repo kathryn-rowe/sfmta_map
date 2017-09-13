@@ -11,6 +11,10 @@ import secret_key
 
 from flask_debugtoolbar import DebugToolbarExtension
 
+from model import (Geometery,
+                   connect_to_db,
+                   db)
+
 # from geojson import (Feature,
 #                      Point,
 #                      FeatureCollection)
@@ -32,14 +36,24 @@ def index():
 def save_geometery():
     """Save geometery to database"""
 
+    name = request.args.get("name")
     shape = request.args.get("shape")
-    lat = request.args.get("lat")
-    long_ = request.args.get("long")
+    latitude = float(request.args.get("lat"))
+    longitude = float(request.args.get("long"))
 
-    print "***************" + shape + "***************"
-    print "***************" + lat + "***************"
-    print "***************" + long_+ "***************"
+    geometery = Geometery(name=name,
+                          shape=shape,
+                          latitude=latitude,
+                          longitude=longitude)
 
+    db.session.add(geometery)
+
+    db.session.commit()
+
+    print "******************", name, "**************"
+    print "******************", shape, "**************"
+    print "******************", str(latitude), "**************"
+    print "******************", str(longitude), "**************"
     return redirect("/")
 
 def create_geojson(sampling_points):
@@ -65,7 +79,7 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = True
 
-    # connect_to_db(app)
+    connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
